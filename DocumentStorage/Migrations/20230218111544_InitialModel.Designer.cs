@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DocumentStorage.Migrations
 {
     [DbContext(typeof(DocumentsContext))]
-    [Migration("20230125210255_InitialModel")]
+    [Migration("20230218111544_InitialModel")]
     partial class InitialModel
     {
         /// <inheritdoc />
@@ -83,7 +83,6 @@ namespace DocumentStorage.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
