@@ -1,7 +1,8 @@
 import { Counter } from "./components/Counter";
 import { FetchData } from "./components/FetchData";
 import { Home } from "./components/Home";
-import { DocumentStorage } from "./components/DocumentStorage"
+import { DocumentStorage } from "./components/DocumentStorage";
+import { CreateNewAuthor } from "./components/CreateNewAuthor";
 
 const AppRoutes = [
   {
@@ -19,6 +20,10 @@ const AppRoutes = [
    {
         path: '/documentStorage',
         element: <DocumentStorage />
+   },
+   {
+        path: '/createNewAuthor',
+        element: <CreateNewAuthor />
    }
 ];
 

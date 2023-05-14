@@ -8,9 +8,9 @@ namespace DocumentStorage.Controllers
 {
 	[ApiController]
 	[Route("api/[controller]")]
-	public class DocumentStorageController : ControllerBase
+	public class AchievementController : ControllerBase
 	{
-		[HttpGet]
+		[HttpGet("Index")]
 		public IEnumerable<temporaryAchievementModel> GetAchievements()
 		{
 			var achievements = new List<temporaryAchievementModel>()
