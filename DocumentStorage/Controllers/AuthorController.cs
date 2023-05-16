@@ -7,11 +7,12 @@ namespace DocumentStorage.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class AuthorControllers : ControllerBase
+    public class AuthorController : ControllerBase
     {
         [HttpPost("Create")]
-        public void CreateAuthor(AuthorModel query)
+        public async Task CreateAuthor([FromForm] IFormCollection formData)
         {
+            await Task.Yield();
             //Добавить Автора
         }
     }

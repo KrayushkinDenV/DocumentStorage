@@ -52,7 +52,7 @@ export class DocumentStorage extends Component {
     }
 
     async loadDataAsync() {
-        const data = await fetch("/api/achievement/index",
+        const data = await fetch("api/achievement/index",
             {
                 method: 'GET'
             }).then(res => res.clone().json());
