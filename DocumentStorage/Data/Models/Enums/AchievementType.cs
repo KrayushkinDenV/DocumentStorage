@@ -1,10 +1,10 @@
-﻿namespace DocumentStorage.Models.Enums
+﻿namespace DocumentStorage.Data.Models.Enums
 {
     public enum AchievementType
     {
         Unknown,
         Scopus,
-        RSCI, 
+        RSCI,
         International,
         Russian,
         University

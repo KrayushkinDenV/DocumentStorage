@@ -4,6 +4,7 @@ using DocumentStorage.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DocumentStorage.Migrations
 {
     [DbContext(typeof(DocumentsContext))]
-    partial class DocumentsContextModelSnapshot : ModelSnapshot
+    [Migration("20230516182003_InitialModelWithDeletionDB")]
+    partial class InitialModelWithDeletionDB
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,11 +27,11 @@ namespace DocumentStorage.Migrations
 
             modelBuilder.Entity("AchievementAuthor", b =>
                 {
-                    b.Property<Guid>("AchievementsAchievementId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("AchievementsAchievementId")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<Guid>("AuthorsAuthorId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("AuthorsAuthorId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("AchievementsAchievementId", "AuthorsAuthorId");
 
@@ -39,9 +42,8 @@ namespace DocumentStorage.Migrations
 
             modelBuilder.Entity("DocumentStorage.Data.Models.Achievement", b =>
                 {
-                    b.Property<Guid>("AchievementId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("AchievementId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("AchievementType")
                         .HasColumnType("int");
@@ -72,14 +74,13 @@ namespace DocumentStorage.Migrations
 
                     b.HasKey("AchievementId");
 
-                    b.ToTable("Achievements");
+                    b.ToTable("Achievement", (string)null);
                 });
 
             modelBuilder.Entity("DocumentStorage.Data.Models.Author", b =>
                 {
-                    b.Property<Guid>("AuthorId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("AuthorId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
@@ -98,7 +99,7 @@ namespace DocumentStorage.Migrations
 
                     b.HasKey("AuthorId");
 
-                    b.ToTable("Authors");
+                    b.ToTable("Author", (string)null);
                 });
 
             modelBuilder.Entity("AchievementAuthor", b =>

@@ -1,6 +1,7 @@
-//---Models---//
+//---Services---//
+using DocumentStorage.Repositories;
+//---Context---//
 using DocumentStorage.Data;
-using DocumentStorage.Models;
 //---NuGet---//
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Builder;
@@ -12,9 +13,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<DocumentsContext>(options =>
 	options.UseSqlServer(builder.Configuration.GetConnectionString("DocumentsContext")));
 
+builder.Services.AddScoped<IAuthorRepository, AuthorRepository>();
+
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddControllersWithViews();
+
 
 var app = builder.Build();
 

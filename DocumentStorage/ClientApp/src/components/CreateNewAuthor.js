@@ -35,35 +35,23 @@ export class CreateNewAuthor extends Component {
             <Form onSubmit={this.handleSubmit}>
 
                 <Form.Group className="mb-3">
-                    <Form.Label>Text Placeholder</Form.Label>
+                    <Form.Label>First Name</Form.Label>
                     <Form.Control type="text" placeholder="Enter First Name" name="firstName" value={this.state.firstName} onChange={this.onInputChange} />
-                    <Form.Text className="text-muted">
-                        Test
-                    </Form.Text>
                 </Form.Group>
 
                 <Form.Group className="mb-3">
-                    <Form.Label>Text Placeholder</Form.Label>
+                    <Form.Label>Last Name</Form.Label>
                     <Form.Control type="text" placeholder="Enter Last Name" name="lastName" value={this.state.lastName} onChange={this.onInputChange} />
-                    <Form.Text className="text-muted">
-                        Test
-                    </Form.Text>
                 </Form.Group>
 
                 <Form.Group className="mb-3">
-                    <Form.Label>Text Placeholder</Form.Label>
+                    <Form.Label>Patronymic</Form.Label>
                     <Form.Control type="text" placeholder="Enter Patronymic" name="patronymic" value={this.state.patronymic} onChange={this.onInputChange} />
-                    <Form.Text className="text-muted">
-                        Test
-                    </Form.Text>
                 </Form.Group>
 
                 <Form.Group className="mb-3">
-                    <Form.Label>Text Placeholder</Form.Label>
+                    <Form.Label>Email</Form.Label>
                     <Form.Control type="text" placeholder="Enter Email" name="email" value={this.state.email} onChange={this.onInputChange} />
-                    <Form.Text className="text-muted">
-                        Test
-                    </Form.Text>
                 </Form.Group>
 
                 <Button variant="primary" size="lg" type="submit" className="mt-5">
@@ -79,13 +67,11 @@ export class CreateNewAuthor extends Component {
         formData.append('patronymic', this.state.patronymic);
         formData.append('email', this.state.email);
 
-
-
         const response = await fetch("api/author/create",
             {
                 method: 'POST',
                 body: formData
-            }).then(res => res.clone().json());
+            });
 
         const data = await response.json();
     }
