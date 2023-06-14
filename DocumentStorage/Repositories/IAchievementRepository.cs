@@ -3,8 +3,8 @@ using DocumentStorage.Data.Models;
 
 namespace DocumentStorage.Repositories
 {
-	public interface IAuthorRepository
+	public interface IAchievementRepository
 	{
-		Task CreateAsync(Author author);
+		Task CreateAsync(Achievement achievement);
 	}
 }

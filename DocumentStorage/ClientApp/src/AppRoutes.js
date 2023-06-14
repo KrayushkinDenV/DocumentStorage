@@ -3,6 +3,7 @@ import { FetchData } from "./components/FetchData";
 import { Home } from "./components/Home";
 import { DocumentStorage } from "./components/DocumentStorage";
 import { CreateNewAuthor } from "./components/CreateNewAuthor";
+import { CreateNewAchievement } from "./components/CreateNewAchievement";
 
 const AppRoutes = [
   {
@@ -24,7 +25,11 @@ const AppRoutes = [
    {
         path: '/createNewAuthor',
         element: <CreateNewAuthor />
-   }
+    },
+    {
+        path: '/createNewAchievement',
+        element: <CreateNewAchievement/>
+    }
 ];
 
 export default AppRoutes;

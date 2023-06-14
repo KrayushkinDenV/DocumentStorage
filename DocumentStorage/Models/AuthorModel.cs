@@ -1,4 +1,4 @@
-﻿namespace DocumentStorage.Controllers.Models
+﻿namespace DocumentStorage.Models
 {
     public class AuthorModel
     {

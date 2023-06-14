@@ -1,9 +1,11 @@
 ﻿//---Models---//
-using DocumentStorage.Controllers.Models;
-
+using DocumentStorage.Models;
+//---Context---//
+using DocumentStorage.Repositories;
+//---Services---//
+using DocumentStorage.Services;
 //---Packages---//
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 
 namespace DocumentStorage.Controllers
 {
@@ -11,6 +13,10 @@ namespace DocumentStorage.Controllers
 	[Route("api/[controller]")]
 	public class AchievementController : ControllerBase
 	{
+		private IAchievementRepository achievementContext;
+		public AchievementController(IAchievementRepository achievementContext) =>
+			this.achievementContext = achievementContext;
+
 		[HttpGet("Index")]
 		public IEnumerable<object> GetAchievements()
 		{
@@ -24,5 +30,8 @@ namespace DocumentStorage.Controllers
 			return achievements;
 		}
 
+		[HttpPost("Create")]
+		public async Task CreateAchievement([FromForm] AchievementModel formData)=>
+			await achievementContext.CreateAsync(formData.AutoMapService());
 	}
 }

@@ -1,8 +1,8 @@
 ﻿//---Context---//
 using DocumentStorage.Repositories;
-using DocumentStorage.Data.Models;
+//---Entites---//
 //---Models---//
-using DocumentStorage.Controllers.Models;
+using DocumentStorage.Models;
 //---Services---//
 using DocumentStorage.Services;
 //---Packages---//

@@ -26,7 +26,7 @@ export class CreateNewAuthor extends Component {
     }
 
     handleSubmit(event) {
-        this.sendHousedata();
+        this.createAuthorData();
     }
 
 
@@ -60,7 +60,7 @@ export class CreateNewAuthor extends Component {
             </Form>
         );
     }
-    async sendHousedata() {
+    async createAuthorData() {
         const formData = new FormData();
         formData.append('firstName', this.state.firstName);
         formData.append('lastName', this.state.lastName);

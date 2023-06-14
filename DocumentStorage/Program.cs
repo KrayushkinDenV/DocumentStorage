@@ -14,6 +14,7 @@ builder.Services.AddDbContext<DocumentsContext>(options =>
 	options.UseSqlServer(builder.Configuration.GetConnectionString("DocumentsContext")));
 
 builder.Services.AddScoped<IAuthorRepository, AuthorRepository>();
+builder.Services.AddScoped<IAchievementRepository, AchievementRepository>();
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
