@@ -2,8 +2,8 @@
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
-export class CreateNewAuthor extends Component {
-    static displayName = CreateNewAuthor.name;
+export class AuthorsCreate extends Component {
+    static displayName = AuthorsCreate.name;
 
     constructor(props) {
         super(props);
@@ -67,7 +67,7 @@ export class CreateNewAuthor extends Component {
         formData.append('patronymic', this.state.patronymic);
         formData.append('email', this.state.email);
 
-        const response = await fetch("api/author/create",
+        const response = await fetch("api/authors/create",
             {
                 method: 'POST',
                 body: formData

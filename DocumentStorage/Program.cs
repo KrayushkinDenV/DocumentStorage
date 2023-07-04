@@ -2,7 +2,7 @@
 using DocumentStorage.Repositories;
 //---Context---//
 using DocumentStorage.Data;
-//---NuGet---//
+//---Packages---//
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Builder;
 
@@ -11,7 +11,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddDbContext<DocumentsContext>(options =>
-	options.UseSqlServer(builder.Configuration.GetConnectionString("DocumentsContext")));
+	options.UseSqlServer(builder.Configuration.GetConnectionString("DocumentsContext")),
+	ServiceLifetime.Transient);
 
 builder.Services.AddScoped<IAuthorRepository, AuthorRepository>();
 builder.Services.AddScoped<IAchievementRepository, AchievementRepository>();
@@ -20,6 +21,10 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddControllersWithViews();
 
+//---Swagger---//
+//https://stackoverflow.com/questions/71932980/what-is-addendpointsapiexplorer-in-asp-net-core-6/71933535#71933535
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
@@ -32,7 +37,10 @@ if (!app.Environment.IsDevelopment())
 }
 else
 {
-	app.UseDeveloperExceptionPage();
+    app.UseSwagger();
+    app.UseSwaggerUI();
+
+    app.UseDeveloperExceptionPage();
 	app.UseMigrationsEndPoint();
 }
 
@@ -40,7 +48,6 @@ else
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
-
 
 app.MapControllerRoute(
 	name: "default",

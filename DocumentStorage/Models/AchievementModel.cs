@@ -10,6 +10,7 @@ namespace DocumentStorage.Models
 		public string JournalName { get; set; }
 		public string? Description { get; set; }
 		public string? LinkToSource { get; set; }
+		public DateTime? ReleaseDate { get; set; }
 		public AchievementType AchievementType { get; set; }
 	}
 }

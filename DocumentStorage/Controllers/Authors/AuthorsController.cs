@@ -8,14 +8,14 @@ using DocumentStorage.Services;
 //---Packages---//
 using Microsoft.AspNetCore.Mvc;
 
-namespace DocumentStorage.Controllers
+namespace DocumentStorage.Controllers.Authors
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class AuthorController : ControllerBase
+    public class AuthorsController : ControllerBase
     {
         private IAuthorRepository authorContext;
-        public AuthorController(IAuthorRepository authorContext) => this.authorContext = authorContext;
+        public AuthorsController(IAuthorRepository authorContext) => this.authorContext = authorContext;
 
         [HttpPost("Create")]
         public async Task CreateAuthor([FromForm] AuthorModel formData) =>

@@ -7,6 +7,10 @@ using AutoMapper;
 
 namespace DocumentStorage.Services
 {
+	public class AutoMapperService
+	{
+		public static MapperConfiguration GetModelsMapping() => AutoMapperBase.getModelMapping();
+    }
     public static class AutoMapperServiceExtesions
 	{
 		public static Author AutoMapService(this AuthorModel source) =>
@@ -14,6 +18,9 @@ namespace DocumentStorage.Services
 
 		public static Achievement AutoMapService(this AchievementModel source) =>
 			AutoMapperBase.getModelMapping().CreateMapper().Map<AchievementModel, Achievement>(source);
+
+		public static AchievementModel AutoMapService(this Achievement source) =>
+			AutoMapperBase.getModelMapping().CreateMapper().Map<Achievement, AchievementModel>(source);
 
 		//public static Author AutoMapService<T>(this T source) =>
 		//	AutoMapperBase.getModelMapping().CreateMapper().Map<T, Achievement>(source);
@@ -30,7 +37,8 @@ namespace DocumentStorage.Services
 				cfg.CreateMap<AchievementModel, Achievement>()
 				   .ForMember(prop => prop.Authors, mc => mc.Ignore())
 				   .ForMember(prop => prop.AchievementId, mc => mc.Ignore())
-				   .ForMember(prop => prop.Documents, mc => mc.Ignore());
+				   .ForMember(prop => prop.Documents, mc => mc.Ignore())
+				   .ReverseMap();
 			});
 	}
 }

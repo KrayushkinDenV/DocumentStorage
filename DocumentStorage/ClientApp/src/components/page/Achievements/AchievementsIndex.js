@@ -2,8 +2,8 @@
 import Button from "react-bootstrap/Button";
 
 
-export class DocumentStorage extends Component {
-    static displayName = DocumentStorage.name;
+export class AchievementsIndex extends Component {
+    static displayName = AchievementsIndex.name;
 
     constructor(props) {
         super(props);
@@ -42,7 +42,7 @@ export class DocumentStorage extends Component {
     render() {
         let contents = this.state.loading
             ? <p><em>Loading...</em></p>
-            : DocumentStorage.renderAchievementsTable(this.state.achievements);
+            : AchievementsIndex.renderAchievementsTable(this.state.achievements);
         return (
             <div>
                 <h1 id="tabelLabel" >Achievements</h1>
@@ -52,7 +52,7 @@ export class DocumentStorage extends Component {
     }
 
     async loadDataAsync() {
-        const data = await fetch("api/achievement/index",
+        const data = await fetch("api/achievements/index",
             {
                 method: 'GET'
             }).then(res => res.clone().json());

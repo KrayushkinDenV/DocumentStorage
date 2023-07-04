@@ -2,6 +2,8 @@
 using DocumentStorage.Data;
 //---Entites---//
 using DocumentStorage.Data.Models;
+//---Packages---//
+using Microsoft.EntityFrameworkCore;
 
 namespace DocumentStorage.Repositories
 {
@@ -16,5 +18,7 @@ namespace DocumentStorage.Repositories
 			context.Add(achievement);
 			await context.SaveChangesAsync();
 		}
+
+		public IQueryable<Achievement> Read() => context.Achievements.AsQueryable();
 	}
 }

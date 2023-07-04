@@ -9,8 +9,8 @@ namespace DocumentStorage.Data
 	{
 		public DocumentsContext(DbContextOptions<DocumentsContext> options) : base(options)
 		{
-			Database.EnsureDeleted();
-			Database.EnsureCreated(); // Гарантия, что БД создалась 
+			//Database.EnsureDeleted();
+			//Database.EnsureCreated(); // Гарантия, что БД создалась 
 		}
 		public DbSet<Author> Authors { get; set; }
 		public DbSet<Achievement> Achievements { get; set; }

@@ -1,9 +1,12 @@
-﻿import React, { Component } from 'react';
+﻿import React, { Component} from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 
-export class CreateNewAchievement extends Component {
-    static displayName = CreateNewAchievement.name;
+
+export class AchievementsCreate extends Component {
+    static displayName = AchievementsCreate.name;
 
     constructor(props) {
         super(props);
@@ -15,12 +18,14 @@ export class CreateNewAchievement extends Component {
             description: '',
             linkToSource: '',
             releaseDate: '',
-            achievementType: ''
+            achievementType: '', 
+            validated: false
         }
 
         this.onInputChange = this.onInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
+
 
     onInputChange(event) {
         this.setState({
@@ -28,31 +33,46 @@ export class CreateNewAchievement extends Component {
         });
     }
 
+    
     handleSubmit(event) {
-        this.createAchievementData();
+
+        const form = event.currentTarget;
+
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+        else {
+            this.createAchievementData();
+        }
+
+        this.setState({ validated: true });
     }
+
 
     render() {
         return (
-            <Form onSubmit={this.handleSubmit}>
+            <Form noValidate onSubmit={this.handleSubmit} validated={ this.state.validated }>
                 <Form.Group>
                     <Form.Label>Title</Form.Label>
-                    <Form.Control type = "text" placeholder = "Enter Title" name = "title" value = {this.state.title} onChange = { this.onInputChange } />
+                    <Form.Control required type="text" placeholder="Enter Title" name="title" value={this.state.title} onChange={this.onInputChange} />
+                    <Form.Control.Feedback type="invalid">Can't be empty!</Form.Control.Feedback>
                 </Form.Group>
 
+                <Row className="mb-3">
+                    <Form.Group md="8" as={ Col }>
+                        <Form.Label>Full Title</Form.Label>
+                        <Form.Control reqired as="textarea" type="text" rows={3} placeholder="Enter Full Title" name="fullTitle" value={this.state.fullTitle} onChange={this.onInputChange} />
+                        <Form.Control.Feedback type="invalid">Can't be empty!</Form.Control.Feedback>
+                    </Form.Group>
+                    <Form.Group md="4" as={Col}>
+                        <Form.Label>Description</Form.Label>
+                        <Form.Control as="textarea" type="text" rows={3} placeholder="Enter Description" name="description" value={this.state.description} onChange={this.onInputChange} />
+                    </Form.Group>
+                </Row>
                 <Form.Group>
-                    <Form.Label>Full Title</Form.Label>
-                    <Form.Control type="text" placeholder="Enter Full Title" name="fullTitle" value={this.state.fullTitle} onChange={this.onInputChange} />
-                </Form.Group>
-
-                <Form.Group>
-                    <Form.Label>Journal Name</Form.Label>
+                    <Form.Label>Journal/Conference/Location Name</Form.Label>
                     <Form.Control type="text" placeholder="Enter Journal Name" name="journalName" value={this.state.journalName} onChange={this.onInputChange} />
-                </Form.Group>
-
-                <Form.Group>
-                    <Form.Label>Description</Form.Label>
-                    <Form.Control type="text" placeholder="Enter Description" name="description" value={this.state.description} onChange={this.onInputChange} />
                 </Form.Group>
 
                 <Form.Group>
@@ -92,7 +112,7 @@ export class CreateNewAchievement extends Component {
         formData.append('releaseDate', this.state.releaseDate);
         formData.append('achievementType', this.state.achievementType);
 
-        const response = await fetch("api/achievement/create",
+        const response = await fetch("api/achievements/create",
             {
                 method: 'POST',
                 body: formData
