@@ -21,7 +21,7 @@ export class AchievementsIndex extends Component {
                         <th>Title</th>
                         <th>FullTitle</th>
                         <th>Description</th>
-                        <th>LinkToSource</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -31,7 +31,6 @@ export class AchievementsIndex extends Component {
                             <td>{achievement.fullTitle}</td>
                             <td>{achievement.journalName}</td>
                             <td>{achievement.description}</td>
-                            <td>{achievement.linkToSource}</td>
                         </tr>
                     )}
                 </tbody>

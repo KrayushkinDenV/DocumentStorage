@@ -34,7 +34,7 @@ namespace DocumentStorage.Migrations
 
                     b.HasIndex("AuthorsAuthorId");
 
-                    b.ToTable("AchievementAuthor");
+                    b.ToTable("AchievementAuthor", (string)null);
                 });
 
             modelBuilder.Entity("DocumentStorage.Data.Models.Achievement", b =>
@@ -49,18 +49,12 @@ namespace DocumentStorage.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Documents")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("FullTitle")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("JournalName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LinkToSource")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("ReleaseDate")
@@ -72,7 +66,7 @@ namespace DocumentStorage.Migrations
 
                     b.HasKey("AchievementId");
 
-                    b.ToTable("Achievements");
+                    b.ToTable("Achievements", (string)null);
                 });
 
             modelBuilder.Entity("DocumentStorage.Data.Models.Author", b =>
@@ -98,7 +92,55 @@ namespace DocumentStorage.Migrations
 
                     b.HasKey("AuthorId");
 
-                    b.ToTable("Authors");
+                    b.ToTable("Authors", (string)null);
+                });
+
+            modelBuilder.Entity("DocumentStorage.Data.Models.Document", b =>
+                {
+                    b.Property<Guid>("DocumentID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("AchievementId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Path")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("DocumentID");
+
+                    b.HasIndex("AchievementId");
+
+                    b.ToTable("Documents", (string)null);
+                });
+
+            modelBuilder.Entity("DocumentStorage.Data.Models.LinkToSource", b =>
+                {
+                    b.Property<Guid>("LinkToSourceID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("AchievementId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Href")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("LinkToSourceID");
+
+                    b.HasIndex("AchievementId");
+
+                    b.ToTable("LinksToSources", (string)null);
                 });
 
             modelBuilder.Entity("AchievementAuthor", b =>
@@ -114,6 +156,35 @@ namespace DocumentStorage.Migrations
                         .HasForeignKey("AuthorsAuthorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("DocumentStorage.Data.Models.Document", b =>
+                {
+                    b.HasOne("DocumentStorage.Data.Models.Achievement", "Achievement")
+                        .WithMany("Documents")
+                        .HasForeignKey("AchievementId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Achievement");
+                });
+
+            modelBuilder.Entity("DocumentStorage.Data.Models.LinkToSource", b =>
+                {
+                    b.HasOne("DocumentStorage.Data.Models.Achievement", "Achievement")
+                        .WithMany("Links")
+                        .HasForeignKey("AchievementId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Achievement");
+                });
+
+            modelBuilder.Entity("DocumentStorage.Data.Models.Achievement", b =>
+                {
+                    b.Navigation("Documents");
+
+                    b.Navigation("Links");
                 });
 #pragma warning restore 612, 618
         }

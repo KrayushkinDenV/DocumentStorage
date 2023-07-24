@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import AchievementsFullCreate from "./page/Achievements/AchievementsFullCreate";
 export class Home extends Component {
   static displayName = Home.name;
 

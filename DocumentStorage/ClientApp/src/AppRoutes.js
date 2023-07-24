@@ -4,6 +4,7 @@ import { Home } from "./components/Home";
 import { AchievementsIndex } from "./components/page/Achievements/AchievementsIndex";
 import { AuthorsCreate } from "./components/page/Authors/AuthorsCreate";
 import { AchievementsCreate } from "./components/page/Achievements/AchievementsCreate";
+import { AchievementsFullCreate } from "./components/page/Achievements/AchievementsFullCreate";
 
 const AppRoutes = [
     {
@@ -25,6 +26,10 @@ const AppRoutes = [
     {
         path: '/achievements/create',
         element: <AchievementsCreate />
+    },
+    {
+        path: '/achievementsfull/create',
+        element: <AchievementsFullCreate/>
     },
     {
         path: '/authors/create',

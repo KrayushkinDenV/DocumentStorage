@@ -11,7 +11,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace DocumentStorage.Controllers.Achievements
 {
     [ApiController]
-    [Route("api/[controller]")]
+	[Produces("application/json")]
+	[Route("api/[controller]")]
     public class AchievementsController : ControllerBase
     {
         private IAchievementRepository achievementContext;

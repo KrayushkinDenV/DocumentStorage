@@ -1,6 +1,6 @@
 ﻿//---Models---//
 using DocumentStorage.Data.Models.Enums;
-using Microsoft.Identity.Client;
+//---Packages---//
 using System.ComponentModel.DataAnnotations;
 
 namespace DocumentStorage.Data.Models
@@ -10,7 +10,10 @@ namespace DocumentStorage.Data.Models
         public Achievement()
         {
             this.Authors = new HashSet<Author>();
-        }
+
+			this.Documents = new List<Document>();
+			this.Links = new List<LinkToSource>();
+		}
 
         [Key]
         public Guid AchievementId { get; set; }
@@ -18,10 +21,10 @@ namespace DocumentStorage.Data.Models
         public string FullTitle { get; set; }
         public string JournalName { get; set; }
         public string? Description { get; set; }
-        public string? LinkToSource { get; set; }
         public DateTime? ReleaseDate { get; set; }
         public AchievementType AchievementType { get; set; }
         public virtual ICollection<Author> Authors { get; set; }
-        public string? Documents { get; set; }
+        public virtual ICollection<Document> Documents { get; set; }
+        public virtual ICollection<LinkToSource> Links{ get; set; }
     }
 }

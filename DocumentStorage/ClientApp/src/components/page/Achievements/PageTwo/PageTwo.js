@@ -5,8 +5,8 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
 
-export class AchievementsCreate extends Component {
-    static displayName = AchievementsCreate.name;
+export class PageTwo extends Component {
+    static displayName = PageTwo.name;
 
     constructor(props) {
         super(props);
@@ -14,10 +14,10 @@ export class AchievementsCreate extends Component {
         {
             title: '',
             fullTitle: '',
-            journalName:'',
+            journalName: '',
             description: '',
             releaseDate: '',
-            achievementType: '', 
+            achievementType: '',
             validated: false
         }
 
@@ -30,9 +30,9 @@ export class AchievementsCreate extends Component {
         this.setState({
             [event.target.name]: event.target.value
         });
-    }
+    }  
 
-    
+
     handleSubmit(event) {
 
         const form = event.currentTarget;
@@ -51,7 +51,7 @@ export class AchievementsCreate extends Component {
 
     render() {
         return (
-            <Form noValidate onSubmit={this.handleSubmit} validated={ this.state.validated }>
+            <Form noValidate onSubmit={this.handleSubmit} validated={this.state.validated}>
                 <Form.Group>
                     <Form.Label>Title</Form.Label>
                     <Form.Control required type="text" placeholder="Enter Title" name="title" value={this.state.title} onChange={this.onInputChange} />
@@ -59,7 +59,7 @@ export class AchievementsCreate extends Component {
                 </Form.Group>
 
                 <Row className="mb-3">
-                    <Form.Group md="8" as={ Col }>
+                    <Form.Group md="8" as={Col}>
                         <Form.Label>Full Title</Form.Label>
                         <Form.Control reqired as="textarea" type="text" rows={3} placeholder="Enter Full Title" name="fullTitle" value={this.state.fullTitle} onChange={this.onInputChange} />
                         <Form.Control.Feedback type="invalid">Can't be empty!</Form.Control.Feedback>
@@ -78,7 +78,7 @@ export class AchievementsCreate extends Component {
 
                 <Form.Group>
                     <Form.Label>Achievement Type</Form.Label>
-                    <Form.Select aria-label="Select Achievement Type" name="achievementType" value={ this.state.achievementType } onChange={ this.onInputChange }>
+                    <Form.Select aria-label="Select Achievement Type" name="achievementType" value={this.state.achievementType} onChange={this.onInputChange}>
                         <option value="0">Unknown</option>
                         <option value="1">Scopus</option>
                         <option value="2">RSCI</option>
@@ -98,7 +98,7 @@ export class AchievementsCreate extends Component {
                     Submit
                 </Button>
             </Form>
-         );
+        );
     }
 
     async createAchievementData() {
@@ -119,3 +119,5 @@ export class AchievementsCreate extends Component {
         const data = await response.json();
     }
 }
+
+export default PageTwo;

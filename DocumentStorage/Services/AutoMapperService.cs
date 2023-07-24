@@ -38,6 +38,7 @@ namespace DocumentStorage.Services
 				   .ForMember(prop => prop.Authors, mc => mc.Ignore())
 				   .ForMember(prop => prop.AchievementId, mc => mc.Ignore())
 				   .ForMember(prop => prop.Documents, mc => mc.Ignore())
+				   .ForMember(prop => prop.Links, mc => mc.Ignore())
 				   .ReverseMap();
 			});
 	}

@@ -46,6 +46,7 @@ export class NavMenu extends Component {
                 <NavDropdown title="Create">
                     <NavLink tag={Link} className="text-dark" to="/authors/create">New Author</NavLink>
                     <NavLink tag={Link} className="text-dark" to="/achievements/create">New Article</NavLink>
+                    <NavLink tag={Link} className="text-dark" to="/achievementsfull/create">New Full Article</NavLink>
                 </NavDropdown>
               </NavItem>
             </ul>
