@@ -11,8 +11,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace DocumentStorage.Controllers.Achievements
 {
     [ApiController]
-	[Produces("application/json")]
-	[Route("api/[controller]")]
+    [Produces("application/json")]
+    [Route("api/[controller]")]
     public class AchievementsController : ControllerBase
     {
         private IAchievementRepository achievementContext;
@@ -32,5 +32,11 @@ namespace DocumentStorage.Controllers.Achievements
         [HttpPost("Create")]
         public async Task CreateAchievement([FromForm] AchievementModel formData) =>
             await achievementContext.CreateAsync(formData.AutoMapService());
+
+        [HttpPost("Upload")]
+        public async Task UploadFile([FromForm] IFormFile file)
+        {
+            await Task.Yield();
+        }
     }
 }

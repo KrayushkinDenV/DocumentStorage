@@ -9,6 +9,7 @@ const context = [
 
     "/api/achievements/index",
     "/api/achievements/create",
+    "/api/achievements/upload",
 
     "/api/authors/create",
 ];

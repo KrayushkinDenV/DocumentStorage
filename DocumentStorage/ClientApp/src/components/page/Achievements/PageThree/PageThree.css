@@ -73,3 +73,8 @@ button {
     color: red;
     border: 1px solid red;
 }
+
+.third-division button {
+    color: darkblue;
+    border: 1px solid darkblue;
+}
