@@ -1,10 +1,9 @@
 //---Services---//
-using DocumentStorage.Repositories;
 //---Context---//
 using DocumentStorage.Data;
+using DocumentStorage.Repositories;
 //---Packages---//
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Builder;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -38,10 +37,10 @@ if (!app.Environment.IsDevelopment())
 }
 else
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+	app.UseSwagger();
+	app.UseSwaggerUI();
 
-    app.UseDeveloperExceptionPage();
+	app.UseDeveloperExceptionPage();
 	app.UseMigrationsEndPoint();
 }
 

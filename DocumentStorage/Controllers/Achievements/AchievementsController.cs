@@ -30,13 +30,13 @@ namespace DocumentStorage.Controllers.Achievements
         }
 
         [HttpPost("Create")]
-        public async Task CreateAchievement([FromForm] AchievementModel formData) =>
+        public async Task<Guid> CreateAchievement([FromForm] AchievementModel formData) =>
             await achievementContext.CreateAsync(formData.AutoMapService());
 
         [HttpPost("Upload")]
         public async Task UploadFile([FromForm] IFormFile file)
         {
-            await Task.Yield();
-        }
+            await FileService.SaveFileAsync(file);
+		}
     }
 }

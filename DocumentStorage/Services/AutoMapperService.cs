@@ -1,17 +1,17 @@
 ﻿//---Context---//
+//---Packages---//
+using AutoMapper;
 using DocumentStorage.Data.Models;
 //---Models---//
 using DocumentStorage.Models;
-//---Packages---//
-using AutoMapper;
 
 namespace DocumentStorage.Services
 {
 	public class AutoMapperService
 	{
 		public static MapperConfiguration GetModelsMapping() => AutoMapperBase.getModelMapping();
-    }
-    public static class AutoMapperServiceExtesions
+	}
+	public static class AutoMapperServiceExtesions
 	{
 		public static Author AutoMapService(this AuthorModel source) =>
 			AutoMapperBase.getModelMapping().CreateMapper().Map<AuthorModel, Author>(source);

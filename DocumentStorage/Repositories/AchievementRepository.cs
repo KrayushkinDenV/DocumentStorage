@@ -3,7 +3,6 @@ using DocumentStorage.Data;
 //---Entites---//
 using DocumentStorage.Data.Models;
 //---Packages---//
-using Microsoft.EntityFrameworkCore;
 
 namespace DocumentStorage.Repositories
 {
@@ -11,14 +10,17 @@ namespace DocumentStorage.Repositories
 	{
 		private readonly DocumentsContext context;
 		public AchievementRepository(DocumentsContext context) => this.context = context;
-		public async Task CreateAsync(Achievement achievement)
+		public async Task CreateNoResultAsync(Achievement achievement) => createBase(achievement);
+		public async Task<Guid> CreateAsync(Achievement achievement) => await createBase(achievement);
+		public IQueryable<Achievement> Read() => context.Achievements.AsQueryable();
+		private async Task<Guid> createBase(Achievement achievement)
 		{
 			achievement.AchievementId = Guid.NewGuid();
 
 			context.Add(achievement);
 			await context.SaveChangesAsync();
-		}
 
-		public IQueryable<Achievement> Read() => context.Achievements.AsQueryable();
+			return achievement.AchievementId;
+		}
 	}
 }

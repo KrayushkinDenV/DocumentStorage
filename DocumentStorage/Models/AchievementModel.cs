@@ -1,5 +1,4 @@
 ﻿using DocumentStorage.Data.Models.Enums;
-using DocumentStorage.Data.Models;
 
 namespace DocumentStorage.Models
 {

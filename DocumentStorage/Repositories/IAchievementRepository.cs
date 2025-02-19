@@ -5,7 +5,8 @@ namespace DocumentStorage.Repositories
 {
 	public interface IAchievementRepository
 	{
-		Task CreateAsync(Achievement achievement);
+		Task<Guid> CreateAsync(Achievement achievement);
+		Task CreateNoResultAsync(Achievement achievement);
 		IQueryable<Achievement> Read();
 	}
 }

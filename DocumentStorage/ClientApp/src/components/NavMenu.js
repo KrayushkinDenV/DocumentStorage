@@ -40,13 +40,15 @@ export class NavMenu extends Component {
                 <NavLink tag={Link} className="text-dark" to="/fetch-data">Fetch data</NavLink>
               </NavItem>              
               <NavItem>
+                <NavLink tag={Link} className="text-dark" to="/test-page">Test Page</NavLink>
+              </NavItem>              
+              <NavItem>
                 <NavLink tag={Link} className="text-dark" to="/achievements/index">Achievements</NavLink>
               </NavItem>
               <NavItem>
                 <NavDropdown title="Create">
                     <NavLink tag={Link} className="text-dark" to="/authors/create">New Author</NavLink>
-                    <NavLink tag={Link} className="text-dark" to="/achievements/create">New Article</NavLink>
-                    <NavLink tag={Link} className="text-dark" to="/achievementsfull/create">New Full Article</NavLink>
+                    <NavLink tag={Link} className="text-dark" to="/achievements/create">New Achievement</NavLink>
                 </NavDropdown>
               </NavItem>
             </ul>

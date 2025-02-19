@@ -1,9 +1,9 @@
 ﻿import { useState } from 'react';
-import "./PageThree.css";
+import "./AchievementFiles.css";
 import Form from 'react-bootstrap/Form';
 
 
-function PageThree() {
+function AchievementFiles() {
     const [fileList, setFileList] = useState([{ description: "",selectedFile: null }]);
 
     const handleDescriptionChange = (e, index) => {
@@ -114,6 +114,4 @@ function PageThree() {
     );
 
 }
-
-
-export default PageThree;
+export default AchievementFiles;

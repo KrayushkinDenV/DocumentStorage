@@ -1,12 +1,11 @@
 ﻿//---Models---//
 using DocumentStorage.Data.Models;
-using Microsoft.AspNetCore.Identity;
 //---NuGet---//
 using Microsoft.EntityFrameworkCore;
 
 namespace DocumentStorage.Data
 {
-    public class DocumentsContext : DbContext
+	public class DocumentsContext : DbContext
 	{
 		public DocumentsContext(DbContextOptions<DocumentsContext> options) : base(options)
 		{

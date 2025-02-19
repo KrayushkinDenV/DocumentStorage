@@ -4,9 +4,10 @@ import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
-
-export class PageTwo extends Component {
-    static displayName = PageTwo.name;
+// Необходимо продумать и реализовать механизм, когда при смене значения isCreated 
+// вызывается следующая страница. 
+export class AchievementInform extends Component {
+    static displayName = AchievementInform.name;
 
     constructor(props) {
         super(props);
@@ -18,13 +19,13 @@ export class PageTwo extends Component {
             description: '',
             releaseDate: '',
             achievementType: '',
-            validated: false
+            validated: false,
+            isCreated: false,
         }
 
         this.onInputChange = this.onInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
-
 
     onInputChange(event) {
         this.setState({
@@ -34,7 +35,6 @@ export class PageTwo extends Component {
 
 
     handleSubmit(event) {
-
         const form = event.currentTarget;
 
         if (form.checkValidity() === false) {
@@ -45,6 +45,7 @@ export class PageTwo extends Component {
             this.createAchievementData();
         }
 
+        this.setState({ validated: true });
         this.setState({ validated: true });
     }
 
@@ -93,10 +94,11 @@ export class PageTwo extends Component {
                     <Form.Control type="file" />
                 </Form.Group>
 
-
-                <Button variant="primary" type="submit" className="mt-5">
-                    Submit
-                </Button>
+                { (!this.state.isCreated) && (
+                    <Button variant="primary" type="submit" className="mt-5">
+                        Submit
+                    </Button>
+                )}
             </Form>
         );
     }
@@ -115,9 +117,13 @@ export class PageTwo extends Component {
                 method: 'POST',
                 body: formData
             });
-
+            
         const data = await response.json();
+        if (data != null)
+        {
+            this.props.creationHandler(true);
+        }
     }
 }
 
-export default PageTwo;
+export default AchievementInform;
