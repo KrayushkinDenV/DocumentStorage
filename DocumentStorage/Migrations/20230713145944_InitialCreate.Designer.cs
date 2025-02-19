@@ -4,6 +4,7 @@ using DocumentStorage.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DocumentStorage.Migrations
 {
     [DbContext(typeof(DocumentsContext))]
-    partial class DocumentsContextModelSnapshot : ModelSnapshot
+    [Migration("20230713145944_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,7 +37,7 @@ namespace DocumentStorage.Migrations
 
                     b.HasIndex("AuthorsAuthorId");
 
-                    b.ToTable("AchievementAuthor", (string)null);
+                    b.ToTable("AchievementAuthor");
                 });
 
             modelBuilder.Entity("DocumentStorage.Data.Models.Achievement", b =>
@@ -66,7 +69,7 @@ namespace DocumentStorage.Migrations
 
                     b.HasKey("AchievementId");
 
-                    b.ToTable("Achievements", (string)null);
+                    b.ToTable("Achievements");
                 });
 
             modelBuilder.Entity("DocumentStorage.Data.Models.Author", b =>
@@ -92,7 +95,7 @@ namespace DocumentStorage.Migrations
 
                     b.HasKey("AuthorId");
 
-                    b.ToTable("Authors", (string)null);
+                    b.ToTable("Authors");
                 });
 
             modelBuilder.Entity("DocumentStorage.Data.Models.Document", b =>
@@ -116,7 +119,7 @@ namespace DocumentStorage.Migrations
 
                     b.HasIndex("AchievementId");
 
-                    b.ToTable("Documents", (string)null);
+                    b.ToTable("Documents");
                 });
 
             modelBuilder.Entity("DocumentStorage.Data.Models.LinkToSource", b =>
@@ -140,7 +143,7 @@ namespace DocumentStorage.Migrations
 
                     b.HasIndex("AchievementId");
 
-                    b.ToTable("LinksToSources", (string)null);
+                    b.ToTable("LinksToSources");
                 });
 
             modelBuilder.Entity("AchievementAuthor", b =>
